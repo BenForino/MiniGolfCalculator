@@ -1,5 +1,11 @@
-$(function () {});
+$(function () {
+	$("#addPlayer").click(function (e) {
+		e.preventDefault();
+	});
+});
 
-function calculateScores(scores) {
-	scores.forEach((element) => {});
+function createPlayers(count) {
+	for (let index = 0; index < count; index++) {
+		players.push(playerScore());
+	}
 }
