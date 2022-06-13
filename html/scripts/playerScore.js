@@ -1,5 +1,7 @@
 class playerScore {
-	constructor() {}
+	constructor(name) {
+		this.name = name;
+	}
 	addScore(score) {
 		this.scoreArray.push(score);
 	}
