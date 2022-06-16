@@ -1,7 +1,5 @@
 class playerScore {
-	constructor(name) {
-		this.name = name;
-	}
+	constructor() {}
 	addScore(score) {
 		this.scoreArray.push(score);
 	}
@@ -11,7 +9,6 @@ class playerScore {
 		scoreArray.forEach((element) => {
 			total = total + element;
 		});
-
 		return total;
 	}
 }
