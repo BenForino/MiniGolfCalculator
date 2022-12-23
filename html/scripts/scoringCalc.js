@@ -40,7 +40,7 @@ function playersToJSON(players) {
 	players.forEach((element) => {
 		jsonArray.push(element.getScoresJSON());
 	});
-	console.log(jsonArray);
+	console.log(JSON.stringify(jsonArray));
 }
 
 function loadPlayers() {
