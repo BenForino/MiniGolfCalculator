@@ -19,7 +19,6 @@ class playerScore {
 	}
 }
 createPlayers(4);
-playersToJSON(players);
 function createPlayers(count) {
 	for (let index = 0; index < count; index++) {
 		players.push(new playerScore());
@@ -33,6 +32,12 @@ function createPlayers(count) {
 	players.forEach((element) => {
 		console.log(element.getScore());
 	});
+
+	savePlayerState(playersToJSON(players));
+}
+
+function savePlayerState(jsonData) {
+	Cookies.set("PlayerState", jsonData);
 }
 
 function playersToJSON(players) {
@@ -40,9 +45,9 @@ function playersToJSON(players) {
 	players.forEach((element) => {
 		jsonArray.push(JSON.parse(element.getScoresJSON()));
 	});
-	console.log(JSON.stringify(jsonArray));
+	return JSON.stringify(jsonArray);
 }
 
-function loadPlayers() {
+function loadPlayerState() {
 	Cookies.set("test", "Test Value");
 }
