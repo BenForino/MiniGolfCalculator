@@ -38,7 +38,7 @@ function createPlayers(count) {
 function playersToJSON(players) {
 	jsonArray = [];
 	players.forEach((element) => {
-		jsonArray.push(element.getScoresJSON());
+		jsonArray.push(JSON.parse(element.getScoresJSON()));
 	});
 	console.log(JSON.stringify(jsonArray));
 }
