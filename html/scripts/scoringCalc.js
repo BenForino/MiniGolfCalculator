@@ -54,7 +54,7 @@ function loadPlayerState() {
 		jsonObject = JSON.parse(playerState);
 		jsonArray = [];
 		for (var i in jsonObject) {
-			jsonArray.push([i, jsonObject[i]]);
+			jsonArray.push([jsonObject[i]]);
 		}
 		console.log(jsonArray);
 
