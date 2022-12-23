@@ -18,10 +18,8 @@ class playerScore {
 		return JSON.stringify(this.scoreArray);
 	}
 }
-
-if (!loadPlayers()) {
-	createPlayers(4);
-}
+createPlayers(4);
+playersToJSON(players);
 function createPlayers(count) {
 	for (let index = 0; index < count; index++) {
 		players.push(new playerScore());
