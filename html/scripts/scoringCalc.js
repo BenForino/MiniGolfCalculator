@@ -49,5 +49,15 @@ function playersToJSON(players) {
 }
 
 function loadPlayerState() {
-	Cookies.set("test", "Test Value");
+	playerState = Cookies.get("PlayerState");
+	if (playerState !== null) {
+		jsonObject = JSON.parse(playerState);
+		jsonArray = [];
+		for (var i in jsonObject) {
+			jsonArray.push([i, jsonObject[i]]);
+		}
+		console.log(jsonArray);
+
+		return true;
+	}
 }
