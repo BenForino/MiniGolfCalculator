@@ -1,8 +1,4 @@
-// $(function () {
-// 	$("#addPlayer").click(function (e) {
-// 		e.preventDefault();
-// 	});
-// });
+const players = [];
 class playerScore {
 	scoreArray = [];
 	constructor() {}
@@ -18,20 +14,35 @@ class playerScore {
 
 		return total;
 	}
+	getScoresJSON() {
+		return JSON.stringify(this.scoreArray);
+	}
 }
 
-createPlayers(4);
+if (!loadPlayers()) {
+	createPlayers(4);
+}
 function createPlayers(count) {
-	const players = [];
 	for (let index = 0; index < count; index++) {
 		players.push(new playerScore());
 	}
 
 	players.forEach((element) => {
 		element.addScore(Math.floor(Math.random() * 10));
+		element.addScore(Math.floor(Math.random() * 10));
 	});
 
 	players.forEach((element) => {
 		console.log(element.getScore());
 	});
+}
+
+function playersToJSON(players) {
+	players.forEach((element) => {
+		console.log(element.getScoresJSON());
+	});
+}
+
+function loadPlayers() {
+	Cookies.set("test", "Test Value");
 }
