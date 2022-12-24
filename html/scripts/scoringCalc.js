@@ -18,16 +18,20 @@ class playerScore {
 		return JSON.stringify(this.scoreArray);
 	}
 }
-createPlayers(4);
+
+if (!loadPlayerState()) {
+	createPlayers(4);
+}
+
 function createPlayers(count) {
 	for (let index = 0; index < count; index++) {
 		players.push(new playerScore());
 	}
 
-	players.forEach((element) => {
-		element.addScore(Math.floor(Math.random() * 10));
-		element.addScore(Math.floor(Math.random() * 10));
-	});
+	// players.forEach((element) => {
+	// 	element.addScore(Math.floor(Math.random() * 10));
+	// 	element.addScore(Math.floor(Math.random() * 10));
+	// });
 
 	players.forEach((element) => {
 		console.log(element.getScore());
@@ -58,6 +62,17 @@ function loadPlayerState() {
 		}
 		console.log(jsonArray);
 
+		createPlayers(jsonArray.count());
+
+		jsonArray.forEach(function (value, i) {
+			value.forEach(function (value1, ii) {
+				players[i].addScore(value1);
+			});
+		});
+		console.log(players);
+
 		return true;
+	} else {
+		return false;
 	}
 }
