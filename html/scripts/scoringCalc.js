@@ -62,7 +62,7 @@ function loadPlayerState() {
 		}
 		console.log(jsonArray);
 
-		createPlayers(jsonArray.count());
+		createPlayers(jsonArray.length);
 
 		jsonArray.forEach(function (value, i) {
 			value.forEach(function (value1, ii) {
