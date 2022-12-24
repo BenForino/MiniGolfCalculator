@@ -37,7 +37,7 @@ function createPlayers(count) {
 		console.log(element.getScore());
 	});
 
-	savePlayerState(playersToJSON(players));
+	// savePlayerState(playersToJSON(players));
 }
 
 function savePlayerState(jsonData) {
