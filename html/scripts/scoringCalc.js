@@ -27,17 +27,7 @@ function createPlayers(count) {
 	for (let index = 0; index < count; index++) {
 		players.push(new playerScore());
 	}
-
-	// players.forEach((element) => {
-	// 	element.addScore(Math.floor(Math.random() * 10));
-	// 	element.addScore(Math.floor(Math.random() * 10));
-	// });
-
-	players.forEach((element) => {
-		console.log(element.getScore());
-	});
-
-	// savePlayerState(playersToJSON(players));
+	savePlayerState(playersToJSON(players));
 }
 
 function savePlayerState(jsonData) {
@@ -54,7 +44,7 @@ function playersToJSON(players) {
 
 function loadPlayerState() {
 	playerState = Cookies.get("PlayerState");
-	if (playerState !== null) {
+	if (playerState != null) {
 		jsonObject = JSON.parse(playerState);
 		jsonArray = [];
 		for (var i in jsonObject) {
@@ -76,3 +66,5 @@ function loadPlayerState() {
 		return false;
 	}
 }
+
+function initSetup() {}
