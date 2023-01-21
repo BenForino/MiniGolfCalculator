@@ -1,7 +1,7 @@
 const players = [];
 class playerScore {
 	scoreArray = [];
-	constructor() {}
+	constructor() { }
 	addScore(score) {
 		this.scoreArray.push(score);
 	}
@@ -18,16 +18,22 @@ class playerScore {
 		return JSON.stringify(this.scoreArray);
 	}
 }
-
-if (!loadPlayerState()) {
-	createPlayers(4);
-}
+$(function () {
+	if (!loadPlayerState()) {
+		initSetup();
+	}
+});
 
 function createPlayers(count) {
-	for (let index = 0; index < count; index++) {
-		players.push(new playerScore());
+	if (players.length == 0) {
+		for (let index = 0; index < count; index++) {
+			players.push(new playerScore());
+		}
+		savePlayerState(playersToJSON(players));
 	}
-	savePlayerState(playersToJSON(players));
+	else {
+		console.log("players already created")
+	}
 }
 
 function savePlayerState(jsonData) {
@@ -67,4 +73,15 @@ function loadPlayerState() {
 	}
 }
 
-function initSetup() {}
+function initSetup() {
+	$form = $('<form id="playerSelect"></form>');
+	$form.append('<input type="number" id="playerCount" name="playerCount" min="1" max="10" > ');
+	$form.append('<input type="button" value="button" id="psBt" >');
+	$form.appendTo('#playerSetup');
+	$("#psBt").click(function (e) {
+		e.preventDefault();
+		var playerCount = $("form").serializeArray()[0].value;
+		createPlayers(Number(playerCount) + 1);
+		$("#playerSetup").hide();
+	});
+}

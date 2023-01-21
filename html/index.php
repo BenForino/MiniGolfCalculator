@@ -14,7 +14,12 @@
 
 <body>
     <div id="calcDiv">
+        <div id="playerSetup">
 
+        </div>
+        <div id="calcContainer">
+
+        </div>
     </div>
 
 </body>
