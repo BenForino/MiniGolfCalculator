@@ -20,6 +20,9 @@
         <div id="calcContainer">
 
         </div>
+        <div id="restart">
+            <button type="button" id="restartBt">Restart Game</button>
+        </div>
     </div>
 
 </body>
