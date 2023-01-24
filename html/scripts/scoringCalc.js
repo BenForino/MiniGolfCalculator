@@ -1,5 +1,6 @@
 gameComplete = false;
 currentRound = -1;
+holes = -1;
 const players = [];
 class playerScore {
 	scoreArray = [];
@@ -34,6 +35,7 @@ $(function () {
 
 function restartGame() { //Clears game state
 	Cookies.remove("PlayerState")
+	Cookies.remove("holes")
 	players.length = 0;
 	currentRound = -1;
 	runGame();
@@ -72,6 +74,12 @@ function playersToJSON(players) { //Converts the players array to json to be sav
 
 function loadPlayerState() { //Loads the player stated from the stored cookie
 	playerState = Cookies.get("PlayerState");
+	let tempHoles = Cookies.get("holes");
+	if (tempHoles != null) {
+		holes = tempHoles;
+	} else {
+		return false;
+	}
 	if (playerState != null) {
 		if (currentRound == -1) {
 			jsonObject = JSON.parse(playerState);
@@ -79,7 +87,6 @@ function loadPlayerState() { //Loads the player stated from the stored cookie
 			for (var i in jsonObject) {
 				jsonArray.push([jsonObject[i]]);
 			}
-			console.log(jsonArray);
 
 			createPlayers(Number(jsonArray.length) + 1);
 
@@ -90,8 +97,6 @@ function loadPlayerState() { //Loads the player stated from the stored cookie
 					});
 				});
 			});
-			console.log(players);
-
 			return true;
 		}
 		return true;
@@ -105,13 +110,14 @@ function initSetup() { //Runs inital setup, intened to be run if no game can be 
 	$("#playerSetup").show();
 	$("#calcContainer").empty();
 	$form = $('<form id="playerSelect"></form>');
-	$form.append('<input type="number" <placeholder="Number of Players"> name="playerCount" min="1" max="10" > ');
-	$form.append('<input type="number" <placeholder="Number of Holes"> name="holesCount" min="1" max="20" > ');
+	$form.append('<input type="number" placeholder="Number of Players" name="playerCount" min="1" max="10" > ');
+	$form.append('<input type="number" placeholder="Number of Holes" name="holesCount" min="1" max="20" > ');
 	$form.append('<input type="button" value="Enter" id="psBt" >');
 	$form.appendTo('#playerSetup');
 	$("#psBt").click(function (e) {
 		e.preventDefault();
 		var playerCount = $("form").serializeArray()[0].value;
+		holes = $("form").serializeArray()[1].value;
 		createPlayers(Number(playerCount) + 1);
 		$("#playerSetup").hide();
 		calcInit();
@@ -119,21 +125,26 @@ function initSetup() { //Runs inital setup, intened to be run if no game can be 
 }
 
 function calcInit() {
-	drawCalculator();
+	currentRound = Number(players[0].getLength()) + 1;
+	if (holes >= currentRound) {
+		drawCalculator();
+	} else {
+		showResults();
+	}
 }
 
 function drawCalculator() {
 	$("#calcContainer").show();
 	$("#calcContainer").empty();
 
-	currentRound = Number(players[0].getLength()) + 1;
-
 	createPlayerInput(currentRound);
 
 }
 
 function createPlayerInput(count) {
+	let holesRemaining = holes - currentRound;
 	$("#calcContainer").append('<p>Input Scores for round ' + currentRound + '</p>');
+	$("#calcContainer").append('<p>Holes Remaining: ' + holesRemaining + '</p>');
 	$form = $('<form id="scoreInput"></form>');
 	for (let index = 0; index < players.length; index++) {
 		$form.append('<input type="number" name="' + index + '" min="1" max="20" > ');
@@ -142,7 +153,6 @@ function createPlayerInput(count) {
 	$form.appendTo('#calcContainer');
 	$("#scoreBt").click(function (e) {
 		e.preventDefault();
-		console.log($("#scoreInput").serializeArray())
 		tallyScores($("#scoreInput").serializeArray());
 	});
 }
@@ -153,7 +163,29 @@ function tallyScores(scoresArray) {
 		players[i].addScore(Number(element.value))
 		i++;
 	});
-	savePlayerState(playersToJSON(players));
+	saveGameState();
 	runGame();
 
+}
+
+function saveGameState() {
+	savePlayerState(playersToJSON(players));
+	Cookies.set("holes", holes);
+}
+
+function showResults() {
+	$("#calcContainer").empty();
+	let scoreArray = [];
+
+	for (let index = 0; index < players.length; index++) {
+		scoreArray[index] = players[index].getScore();
+	}
+	scoreArray = Object.entries(scoreArray);
+	scoreArray.sort(function (a, b) {
+		return a[1] - b[1];
+	});
+
+	if (scoreArray.length > 1) {
+		$("#calcContainer").append('<p>Player ' + (Number(scoreArray[0][0]) + 1) + '</p>');
+	}
 }
