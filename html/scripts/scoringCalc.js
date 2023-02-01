@@ -198,7 +198,7 @@ function showResults() {
 			} else {
 				console.log("Player " + (Number(scoreArray[index][0]) + 1) + " is position " + (Number(index) + 1));
 			}
-		} else if (index == scoreArray.length - 1) {
+		} else if (index == scoreArray.length - 1 && scoreArray[index][1] != scoreArray[index - 1][1]) {
 			console.log("Player " + (Number(scoreArray[index][0]) + 1) + " is position " + (Number(index) + 1));
 		}
 	}
