@@ -176,7 +176,7 @@ function saveGameState() {
 function showResults() {
 	$("#calcContainer").empty();
 	let scoreArray = [];
-
+	let drawArray = [];
 	for (let index = 0; index < players.length; index++) {
 		scoreArray[index] = players[index].getScore();
 	}
@@ -184,8 +184,50 @@ function showResults() {
 	scoreArray.sort(function (a, b) {
 		return a[1] - b[1];
 	});
-
-	if (scoreArray.length > 1) {
-		$("#calcContainer").append('<p>Player ' + (Number(scoreArray[0][0]) + 1) + '</p>');
+	drawArray = calculateDraw(scoreArray);
+	console.log(drawArray);
+	for (let index = 0; index < scoreArray.length; index++) {
+		if (drawArray[scoreArray[index][0]] != null) {
+			if (drawArray[scoreArray[index][0]].length != 0) {
+				console.log("Player " + (Number(scoreArray[index][0]) + 1) + " drew with:");
+				drawArray[scoreArray[index][0]].forEach(element => {
+					console.log("Player: " + (Number(element) + 1));
+				});
+			} else if (index == 0) {
+				console.log("Player " + (Number(scoreArray[index][0]) + 1) + " Wins!");
+			} else {
+				console.log("Player " + (Number(scoreArray[index][0]) + 1) + " is position " + (Number(index) + 1));
+			}
+		} else if (index == scoreArray.length - 1) {
+			console.log("Player " + (Number(scoreArray[index][0]) + 1) + " is position " + (Number(index) + 1));
+		}
 	}
+}
+
+
+function calculateDraw(scores) {
+	finalScores = [];
+	tempScores = [];
+	let counter = scores[0][0];
+	for (let index = 0; index < scores.length - 1; index++) {
+		if (scores[index][1] == scores[index + 1][1]) {
+			tempScores.push(scores[index + 1][0])
+			if (index == scores.length - 2) {
+				finalScores[counter] = createArray(tempScores);
+			}
+		} else {
+			finalScores[counter] = createArray(tempScores);
+			tempScores.length = 0;
+			counter = scores[index + 1][0];
+		}
+	}
+	return finalScores;
+}
+
+function createArray(array) {
+	let newarray = [];
+	array.forEach(element => {
+		newarray.push(element);
+	});
+	return newarray;
 }
