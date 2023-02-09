@@ -3,4 +3,4 @@
 
 (WIP - NOT FINISHED)
 
-Hosted at golf.benforino.co.uk if you would like to try
+Hosted [here](golf.benforino.co.uk) if you would like to try
