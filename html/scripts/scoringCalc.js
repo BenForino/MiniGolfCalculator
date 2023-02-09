@@ -189,16 +189,21 @@ function showResults() {
 	for (let index = 0; index < scoreArray.length; index++) {
 		if (drawArray[scoreArray[index][0]] != null) {
 			if (drawArray[scoreArray[index][0]].length != 0) {
+				$("#calcContainer").append('<p>Player ' + (Number(scoreArray[index][0]) + 1) + ' drew with:</p>');
 				console.log("Player " + (Number(scoreArray[index][0]) + 1) + " drew with:");
 				drawArray[scoreArray[index][0]].forEach(element => {
+					$("#calcContainer").append('<p>Player: ' + (Number(element) + 1) + '</p>');
 					console.log("Player: " + (Number(element) + 1));
 				});
 			} else if (index == 0) {
+				$("#calcContainer").append('<p>Player: ' + (Number(scoreArray[index][0]) + 1) + ' Wins! </p>');
 				console.log("Player " + (Number(scoreArray[index][0]) + 1) + " Wins!");
 			} else {
+				$("#calcContainer").append('<p>Player: ' + (Number(scoreArray[index][0]) + 1) + ' is position ' + (Number(index) + 1) + '</p>');
 				console.log("Player " + (Number(scoreArray[index][0]) + 1) + " is position " + (Number(index) + 1));
 			}
 		} else if (index == scoreArray.length - 1 && scoreArray[index][1] != scoreArray[index - 1][1]) {
+			$("#calcContainer").append('<p>Player: ' + (Number(scoreArray[index][0]) + 1) + ' is position ' + (Number(index) + 1) + '</p>');
 			console.log("Player " + (Number(scoreArray[index][0]) + 1) + " is position " + (Number(index) + 1));
 		}
 	}
