@@ -1,31 +1,31 @@
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-#calcDiv{
-    width: 80vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#calcDiv {
+	width: 80vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
-#playerSetup{
-    width: 80vw;
+#playerSetup {
+	width: 80vw;
 }
-#playerSelect{
-    display: flex;
-    flex-direction: column;
+#playerSetup form {
+	display: flex;
+	flex-direction: column;
 }
 
-#playerSelect input{
-    margin: 0.5em;
+#playerSetup form input {
+	margin: 0.5em;
 }
 
 #scoreInput {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
-#scoreInput input{
-    margin: 0.5em;
+#scoreInput input {
+	margin: 0.5em;
 }
