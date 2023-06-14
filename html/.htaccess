@@ -1,4 +1,0 @@
-DirectoryIndex index.php
-Header always append X-Frame-Options SAMEORIGIN
-Header set Content-Security-Policy-Report-Only: "default-src 'none'; form-action 'none'; frame-ancestors 'none'; style-src 'self'; script-src 'self' kit.fontawesome.com www.gstatic.com; img-src 'self';"
-ErrorDocument 404 /404
