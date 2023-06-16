@@ -5,7 +5,7 @@ const players = [];
 class playerScore {
 	name = "";
 	scoreArray = [];
-	constructor() { }
+	constructor() {}
 	addScore(score) {
 		this.scoreArray.push(score);
 	}
@@ -39,7 +39,8 @@ $(function () {
 	});
 });
 
-function restartGame() { //Clears game state
+function restartGame() {
+	//Clears game state
 	Cookies.remove("PlayerState");
 	Cookies.remove("holes");
 	Cookies.remove("names");
@@ -59,22 +60,24 @@ function runGame() {
 	}
 }
 
-function createPlayers(count) { //Creates an array of player classes, these are empty
+function createPlayers(count) {
+	//Creates an array of player classes, these are empty
 	if (players.length == 0) {
 		for (let index = 0; index < count - 1; index++) {
 			players.push(new playerScore());
 		}
-	}
-	else {
-		console.log("players already created")
+	} else {
+		console.log("players already created");
 	}
 }
 
-function savePlayerState(jsonData) { //Saves the player state to the cookie
+function savePlayerState(jsonData) {
+	//Saves the player state to the cookie
 	Cookies.set("PlayerState", jsonData);
 }
 
-function playersToJSON(players) { //Converts the players array to json to be saved to the cookie
+function playersToJSON(players) {
+	//Converts the players array to json to be saved to the cookie
 	jsonArray = [];
 	players.forEach((element) => {
 		jsonArray.push(JSON.parse(element.getScoresJSON()));
@@ -82,7 +85,8 @@ function playersToJSON(players) { //Converts the players array to json to be sav
 	return JSON.stringify(jsonArray);
 }
 
-function loadPlayerState() { //Loads the player stated from the stored cookie
+function loadPlayerState() {
+	//Loads the player stated from the stored cookie
 	playerState = Cookies.get("PlayerState");
 	playerNames = Cookies.get("names");
 	let tempHoles = Cookies.get("holes");
@@ -117,15 +121,20 @@ function loadPlayerState() { //Loads the player stated from the stored cookie
 	}
 }
 
-function initSetup() { //Runs inital setup, intened to be run if no game can be found in cookies
+function initSetup() {
+	//Runs inital setup, intened to be run if no game can be found in cookies
 	$("#playerSetup").empty();
 	$("#playerSetup").show();
 	$("#calcContainer").empty();
 	$form = $('<form id="playerSelect"></form>');
-	$form.append('<input type="number" placeholder="Number of Players" name="playerCount" min="1" max="10" > ');
-	$form.append('<input type="number" placeholder="Number of Holes" name="holesCount" min="1" max="20" > ');
+	$form.append(
+		'<input type="number" placeholder="Number of Players" name="playerCount" min="1" max="10" > '
+	);
+	$form.append(
+		'<input type="number" placeholder="Number of Holes" name="holesCount" min="1" max="20" > '
+	);
 	$form.append('<input type="button" value="Enter" id="psBt" >');
-	$form.appendTo('#playerSetup');
+	$form.appendTo("#playerSetup");
 	$("#psBt").click(function (e) {
 		e.preventDefault();
 		var playerCount = $("form").serializeArray()[0].value;
@@ -139,10 +148,16 @@ function drawNameInput() {
 	$("#playerSetup").empty();
 	$form = $('<form id="playerNames"></form>');
 	for (let index = 0; index < players.length; index++) {
-		$form.append('<input type="text" placeholder="Player ' + (Number(index) + 1) + ' name" name="' + index + '">');
+		$form.append(
+			'<input type="text" placeholder="Player ' +
+				(Number(index) + 1) +
+				' name" name="' +
+				index +
+				'">'
+		);
 	}
 	$form.append('<input type="button" value="Enter" id="pnBt" >');
-	$form.appendTo('#playerSetup');
+	$form.appendTo("#playerSetup");
 	$("#pnBt").click(function (e) {
 		e.preventDefault();
 		console.log($("#playerNames").serializeArray());
@@ -178,19 +193,28 @@ function drawCalculator() {
 	$("#calcContainer").empty();
 
 	createPlayerInput(currentRound);
-
 }
 
 function createPlayerInput(count) {
 	let holesRemaining = holes - currentRound;
-	$("#calcContainer").append('<p>Input Scores for round ' + currentRound + '</p>');
-	$("#calcContainer").append('<p>Holes Remaining: ' + holesRemaining + '</p>');
+	$("#calcContainer").append(
+		"<p>Input Scores for round " + currentRound + "</p>"
+	);
+	$("#calcContainer").append(
+		"<p>Holes Remaining: " + holesRemaining + "</p>"
+	);
 	$form = $('<form id="scoreInput"></form>');
 	for (let index = 0; index < players.length; index++) {
-		$form.append('<input type="number" placeholder="Player: ' + players[index].getName() + '" name="' + index + '" min="1" max="20" > ');
+		$form.append(
+			'<input type="number" placeholder="Player: ' +
+				players[index].getName() +
+				'" name="' +
+				index +
+				'" min="1" max="20" > '
+		);
 	}
 	$form.append('<input type="button" value="Submit" id="scoreBt" >');
-	$form.appendTo('#calcContainer');
+	$form.appendTo("#calcContainer");
 	$("#scoreBt").click(function (e) {
 		e.preventDefault();
 		tallyScores($("#scoreInput").serializeArray());
@@ -199,24 +223,22 @@ function createPlayerInput(count) {
 
 function tallyScores(scoresArray) {
 	let i = 0;
-	scoresArray.forEach(element => {
-		players[i].addScore(Number(element.value))
+	scoresArray.forEach((element) => {
+		players[i].addScore(Number(element.value));
 		i++;
 	});
 	saveGameState();
 	runGame();
-
 }
 
 function saveGameState() {
 	let nameArray = [];
-	players.forEach(element => {
+	players.forEach((element) => {
 		nameArray.push(element.getName());
 	});
 	Cookies.set("names", JSON.stringify(nameArray));
 	savePlayerState(playersToJSON(players));
 	Cookies.set("holes", holes);
-
 }
 
 function showResults() {
@@ -234,21 +256,46 @@ function showResults() {
 	for (let index = 0; index < scoreArray.length; index++) {
 		if (drawArray[scoreArray[index][0]] != null) {
 			if (drawArray[scoreArray[index][0]].length != 0) {
-				$("#calcContainer").append('<p>Player ' + players[scoreArray[index][0]].getName() + ' drew with:</p>');
-				drawArray[scoreArray[index][0]].forEach(element => {
-					$("#calcContainer").append('<p>Player: ' + players[element].getName() + '</p>');
+				$("#calcContainer").append(
+					"<p>Player " +
+						players[scoreArray[index][0]].getName() +
+						" drew with:</p>"
+				);
+				drawArray[scoreArray[index][0]].forEach((element) => {
+					$("#calcContainer").append(
+						"<p>Player: " + players[element].getName() + "</p>"
+					);
 				});
 			} else if (index == 0) {
-				$("#calcContainer").append('<p>Player: ' + players[scoreArray[index][0]].getName() + ' Wins! </p>');
+				$("#calcContainer").append(
+					"<p>Player: " +
+						players[scoreArray[index][0]].getName() +
+						" Wins! </p>"
+				);
 			} else {
-				$("#calcContainer").append('<p>Player: ' + players[scoreArray[index][0]].getName() + ' is position ' + (Number(index) + 1) + '</p>');
+				$("#calcContainer").append(
+					"<p>Player: " +
+						players[scoreArray[index][0]].getName() +
+						" is position " +
+						(Number(index) + 1) +
+						"</p>"
+				);
 			}
-		} else if (index == scoreArray.length - 1 && scoreArray[index][1] != scoreArray[index - 1][1]) {
-			$("#calcContainer").append('<p>Player: ' + players[scoreArray[index][0]].getName() + ' is position ' + (Number(index) + 1) + '</p>');
+		} else if (
+			index == scoreArray.length - 1 &&
+			scoreArray[index][1] != scoreArray[index - 1][1]
+		) {
+			$("#calcContainer").append(
+				"<p>Player: " +
+					players[scoreArray[index][0]].getName() +
+					" is position " +
+					(Number(index) + 1) +
+					"</p>"
+			);
 		}
 	}
+	printFullScore(scoreArray);
 }
-
 
 function calculateDraw(scores) {
 	finalScores = [];
@@ -256,7 +303,7 @@ function calculateDraw(scores) {
 	let counter = scores[0][0];
 	for (let index = 0; index < scores.length - 1; index++) {
 		if (scores[index][1] == scores[index + 1][1]) {
-			tempScores.push(scores[index + 1][0])
+			tempScores.push(scores[index + 1][0]);
 			if (index == scores.length - 2) {
 				finalScores[counter] = createArray(tempScores);
 			}
@@ -271,8 +318,19 @@ function calculateDraw(scores) {
 
 function createArray(array) {
 	let newarray = [];
-	array.forEach(element => {
+	array.forEach((element) => {
 		newarray.push(element);
 	});
 	return newarray;
+}
+
+function printFullScore(scoreArray) {
+	var table = $("<table>").addClass("foo");
+	for (let index = 0; index < scoresArray.length - 1; index++) {
+		var row = $("<tr>")
+			.addClass("bar")
+			.text("result " + scoreArray[i]);
+		table.append(row);
+	}
+	$("#calcContainer").append(table);
 }
