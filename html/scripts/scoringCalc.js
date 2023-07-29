@@ -329,7 +329,7 @@ function printFullScore(scoreArray) {
 	for (let index = 0; index < scoreArray.length - 1; index++) {
 		var row = $("<tr>")
 			.addClass("bar")
-			.text("result " + scoreArray[index]);
+			.text("result " + scoreArray[index][1]);
 		table.append(row);
 	}
 	$("#calcContainer").append(table);
