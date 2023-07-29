@@ -5,7 +5,7 @@ const players = [];
 class playerScore {
 	name = "";
 	scoreArray = [];
-	constructor() {}
+	constructor() { }
 	addScore(score) {
 		this.scoreArray.push(score);
 	}
@@ -150,10 +150,10 @@ function drawNameInput() {
 	for (let index = 0; index < players.length; index++) {
 		$form.append(
 			'<input type="text" placeholder="Player ' +
-				(Number(index) + 1) +
-				' name" name="' +
-				index +
-				'">'
+			(Number(index) + 1) +
+			' name" name="' +
+			index +
+			'">'
 		);
 	}
 	$form.append('<input type="button" value="Enter" id="pnBt" >');
@@ -207,10 +207,10 @@ function createPlayerInput(count) {
 	for (let index = 0; index < players.length; index++) {
 		$form.append(
 			'<input type="number" placeholder="Player: ' +
-				players[index].getName() +
-				'" name="' +
-				index +
-				'" min="1" max="20" > '
+			players[index].getName() +
+			'" name="' +
+			index +
+			'" min="1" max="20" > '
 		);
 	}
 	$form.append('<input type="button" value="Submit" id="scoreBt" >');
@@ -258,8 +258,8 @@ function showResults() {
 			if (drawArray[scoreArray[index][0]].length != 0) {
 				$("#calcContainer").append(
 					"<p>Player " +
-						players[scoreArray[index][0]].getName() +
-						" drew with:</p>"
+					players[scoreArray[index][0]].getName() +
+					" drew with:</p>"
 				);
 				drawArray[scoreArray[index][0]].forEach((element) => {
 					$("#calcContainer").append(
@@ -269,16 +269,16 @@ function showResults() {
 			} else if (index == 0) {
 				$("#calcContainer").append(
 					"<p>Player: " +
-						players[scoreArray[index][0]].getName() +
-						" Wins! </p>"
+					players[scoreArray[index][0]].getName() +
+					" Wins! </p>"
 				);
 			} else {
 				$("#calcContainer").append(
 					"<p>Player: " +
-						players[scoreArray[index][0]].getName() +
-						" is position " +
-						(Number(index) + 1) +
-						"</p>"
+					players[scoreArray[index][0]].getName() +
+					" is position " +
+					(Number(index) + 1) +
+					"</p>"
 				);
 			}
 		} else if (
@@ -287,10 +287,10 @@ function showResults() {
 		) {
 			$("#calcContainer").append(
 				"<p>Player: " +
-					players[scoreArray[index][0]].getName() +
-					" is position " +
-					(Number(index) + 1) +
-					"</p>"
+				players[scoreArray[index][0]].getName() +
+				" is position " +
+				(Number(index) + 1) +
+				"</p>"
 			);
 		}
 	}
@@ -326,7 +326,7 @@ function createArray(array) {
 
 function printFullScore(scoreArray) {
 	var table = $("<table>").addClass("foo");
-	for (let index = 0; index < scoresArray.length - 1; index++) {
+	for (let index = 0; index < scoreArray.length - 1; index++) {
 		var row = $("<tr>")
 			.addClass("bar")
 			.text("result " + scoreArray[i]);
