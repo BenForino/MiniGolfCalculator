@@ -326,10 +326,10 @@ function createArray(array) {
 
 function printFullScore(scoreArray) {
 	var table = $("<table>").addClass("foo");
-	for (let index = 0; index < scoreArray.length - 1; index++) {
+	for (let index = 0; index < scoreArray.length; index++) {
 		var row = $("<tr>")
 			.addClass("bar")
-			.text("result " + scoreArray[index]);
+			.text(players[scoreArray[index][0]].getName() + " : " + scoreArray[index][1]);
 		table.append(row);
 	}
 	$("#calcContainer").append(table);
