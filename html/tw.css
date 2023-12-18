@@ -544,6 +544,10 @@ video {
   display: table;
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
 body {
   display: flex;
   justify-content: center;
