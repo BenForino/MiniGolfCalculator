@@ -571,6 +571,10 @@ video {
   max-width: 24rem;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .items-center {
   align-items: center;
 }
@@ -594,6 +598,16 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-blue-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(147 197 253 / var(--tw-bg-opacity));
+}
+
+.bg-slate-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+
 .p-6 {
   padding: 1.5rem;
 }
@@ -615,13 +629,6 @@ body {
   height: 100vh;
   margin: 0;
 }
-
-/* #calcDiv {
-	width: 50vw;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-} */
 
 #playerSetup {
   width: inherit;
