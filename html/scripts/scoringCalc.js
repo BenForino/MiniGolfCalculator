@@ -128,10 +128,10 @@ function initSetup() {
 	$("#calcContainer").empty();
 	$form = $('<form id="playerSelect"></form>');
 	$form.append(
-		'<input type="number" placeholder="Number of Players" name="playerCount" min="1" max="10" > '
+		'<input type="number" class="input-primary" placeholder="Number of Players" name="playerCount" min="1" max="10" > '
 	);
 	$form.append(
-		'<input type="number" placeholder="Number of Holes" name="holesCount" min="1" max="20" > '
+		'<input type="number" class="input-primary" placeholder="Number of Holes" name="holesCount" min="1" max="20" > '
 	);
 	$form.append('<input type="button" value="Enter" id="psBt" >');
 	$form.appendTo("#playerSetup");
