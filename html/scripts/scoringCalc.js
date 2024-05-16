@@ -334,3 +334,7 @@ function printFullScore(scoreArray) {
 	}
 	$("#calcContainer").append(table);
 }
+
+function printScoreSheet(scoreArray) {
+
+}
