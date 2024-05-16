@@ -1,6 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.input-primary {
+		@apply h-full w-full rounded-[7px] border border-slate-700 bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal outline outline-0 transition-all placeholder-gray-500 focus:border-2 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-slate-50;
+	}
+	.form-primary {
+		@apply flex flex-col space-y-10;
+	}
+}
+
 body {
 	display: flex;
 	justify-content: center;
@@ -9,28 +19,10 @@ body {
 	margin: 0;
 }
 
-#calcDiv {
-	width: 50vw;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
 #playerSetup {
 	width: inherit;
 }
-#playerSetup form {
-	display: flex;
-	flex-direction: column;
-}
 
-#playerSetup form input {
-	margin: 0.5em;
-}
-
-#scoreInput {
-	display: flex;
-	flex-direction: column;
-}
 #scoreInput input {
 	margin: 0.5em;
 }

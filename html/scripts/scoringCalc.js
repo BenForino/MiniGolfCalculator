@@ -126,12 +126,12 @@ function initSetup() {
 	$("#playerSetup").empty();
 	$("#playerSetup").show();
 	$("#calcContainer").empty();
-	$form = $('<form id="playerSelect"></form>');
+	$form = $('<form id="playerSelect" class="form-primary"></form>');
 	$form.append(
-		'<input type="number" placeholder="Number of Players" name="playerCount" min="1" max="10" > '
+		'<input type="number" class="input-primary" placeholder="Number of Players" name="playerCount" min="1" max="10" > '
 	);
 	$form.append(
-		'<input type="number" placeholder="Number of Holes" name="holesCount" min="1" max="20" > '
+		'<input type="number" class="input-primary" placeholder="Number of Holes" name="holesCount" min="1" max="20" > '
 	);
 	$form.append('<input type="button" value="Enter" id="psBt" >');
 	$form.appendTo("#playerSetup");
@@ -146,10 +146,10 @@ function initSetup() {
 
 function drawNameInput() {
 	$("#playerSetup").empty();
-	$form = $('<form id="playerNames"></form>');
+	$form = $('<form id="playerNames" class="form-primary"></form>');
 	for (let index = 0; index < players.length; index++) {
 		$form.append(
-			'<input type="text" placeholder="Player ' +
+			'<input type="text" class="input-primary" placeholder="Player ' +
 			(Number(index) + 1) +
 			' name" name="' +
 			index +
@@ -203,10 +203,10 @@ function createPlayerInput(count) {
 	$("#calcContainer").append(
 		"<p>Holes Remaining: " + holesRemaining + "</p>"
 	);
-	$form = $('<form id="scoreInput"></form>');
+	$form = $('<form id="scoreInput" class="form-primary"></form>');
 	for (let index = 0; index < players.length; index++) {
 		$form.append(
-			'<input type="number" placeholder="Player: ' +
+			'<input type="number" class="input-primary" placeholder="Player: ' +
 			players[index].getName() +
 			'" name="' +
 			index +
