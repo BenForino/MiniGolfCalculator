@@ -23,6 +23,9 @@ class playerScore {
 
 		return total;
 	}
+	getScoreArray() {
+		return this.scoreArray;
+	}
 	getScoresJSON() {
 		return JSON.stringify(this.scoreArray);
 	}
@@ -198,10 +201,7 @@ function drawCalculator() {
 function createPlayerInput(count) {
 	let holesRemaining = holes - currentRound;
 	$("#calcContainer").append(
-		"<p>Input Scores for round " + currentRound + "</p>"
-	);
-	$("#calcContainer").append(
-		"<p>Holes Remaining: " + holesRemaining + "</p>"
+		"<p>Input Scores For Round " + currentRound + " out of " + holes + "</p>"
 	);
 	$form = $('<form id="scoreInput" class="form-primary"></form>');
 	for (let index = 0; index < players.length; index++) {
@@ -228,6 +228,7 @@ function tallyScores(scoresArray) {
 		i++;
 	});
 	saveGameState();
+	printScoreSheet();
 	runGame();
 }
 
@@ -335,6 +336,50 @@ function printFullScore(scoreArray) {
 	$("#calcContainer").append(table);
 }
 
-function printScoreSheet(scoreArray) {
+function printScoreSheet() {
 
+	var table = $("<table>").addClass("foo");
+	//create headers
+	var header = $("<tr>").addclass("header");
+	for (let index = 0; index < holes + 2; index++) {
+		if (index == 0) {
+			var row = $("<th>")
+				.text("Players");
+			header.append(row);
+		}
+		else if (index == holes) {
+			var row = $("<th>")
+				.text("Total");
+			header.append(row);
+		}
+		else {
+			var row = $("<th>")
+				.text(index);
+			header.append(row);
+		}
+	}
+	table.append(header);
+	for (let playerIndex = 0; index < index < players.length; index++) {
+		var scoreRow = $("<tr>");
+		for (let index = 0; index < index < holes + 2; index++) {
+			if (index == 0) {
+				var row = $("<td>")
+					.text(players[playerIndex].getName);
+				scoreRow.append(row);
+			}
+			else if (index == holes) {
+				var row = $("<td>")
+					.text(players[playerIndex].getScore);
+				scoreRow.append(row);
+			}
+			else {
+				var row = $("<td>")
+					.text(players[playerIndex].getScoreArray[index - 1]);
+				scoreRow.append(row);
+			}
+		}
+		table.append(scoreRow);
+	}
+
+	$("#scoresheet").append(table);
 }
