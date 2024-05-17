@@ -359,22 +359,22 @@ function printScoreSheet() {
 		}
 	}
 	table.append(header);
-	for (let playerIndex = 0; index < index < players.length; index++) {
+	for (let playerIndex = 0; playerIndex < players.length; playerIndex++) {
 		var scoreRow = $("<tr>");
-		for (let index = 0; index < index < holes + 2; index++) {
+		for (let index = 0; index < holes + 2; index++) {
 			if (index == 0) {
 				var row = $("<td>")
-					.text(players[playerIndex].getName);
+					.text(players[playerIndex].getName());
 				scoreRow.append(row);
 			}
 			else if (index == holes) {
 				var row = $("<td>")
-					.text(players[playerIndex].getScore);
+					.text(players[playerIndex].getScore());
 				scoreRow.append(row);
 			}
 			else {
 				var row = $("<td>")
-					.text(players[playerIndex].getScoreArray[index - 1]);
+					.text(players[playerIndex].getScoreArray()[index - 1]);
 				scoreRow.append(row);
 			}
 		}
