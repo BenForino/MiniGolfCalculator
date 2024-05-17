@@ -340,14 +340,14 @@ function printScoreSheet() {
 
 	var table = $("<table>").addClass("foo");
 	//create headers
-	var header = $("<tr>").addclass("header");
-	for (let index = 0; index < holes + 2; index++) {
+	var header = $("<tr>").addClass("header");
+	for (let index = 0; index < Number(holes) + 2; index++) {
 		if (index == 0) {
 			var row = $("<th>")
 				.text("Players");
 			header.append(row);
 		}
-		else if (index == holes) {
+		else if (index == Number(holes)) {
 			var row = $("<th>")
 				.text("Total");
 			header.append(row);
@@ -361,13 +361,13 @@ function printScoreSheet() {
 	table.append(header);
 	for (let playerIndex = 0; playerIndex < players.length; playerIndex++) {
 		var scoreRow = $("<tr>");
-		for (let index = 0; index < holes + 2; index++) {
+		for (let index = 0; index < Number(holes) + 2; index++) {
 			if (index == 0) {
 				var row = $("<td>")
 					.text(players[playerIndex].getName());
 				scoreRow.append(row);
 			}
-			else if (index == holes) {
+			else if (index == Number(holes)) {
 				var row = $("<td>")
 					.text(players[playerIndex].getScore());
 				scoreRow.append(row);
