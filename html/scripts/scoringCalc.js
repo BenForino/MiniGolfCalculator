@@ -40,6 +40,10 @@ $(function () {
 		e.preventDefault();
 		restartGame();
 	});
+	$("#scoresheetBt").click(function (e) {
+		e.preventDefault();
+		$("#scoresheet").toggle(100);
+	});
 });
 
 function restartGame() {
@@ -337,11 +341,11 @@ function printFullScore(scoreArray) {
 }
 
 function printScoreSheet() {
-
+	$("#scoresheet").empty();
 	var table = $("<table>").addClass("foo");
 	//create headers
 	var header = $("<tr>").addClass("header");
-	for (let index = 0; index < Number(holes) + 2; index++) {
+	for (let index = 0; index < Number(holes) + 1; index++) {
 		if (index == 0) {
 			var row = $("<th>")
 				.text("Players");
@@ -361,7 +365,7 @@ function printScoreSheet() {
 	table.append(header);
 	for (let playerIndex = 0; playerIndex < players.length; playerIndex++) {
 		var scoreRow = $("<tr>");
-		for (let index = 0; index < Number(holes) + 2; index++) {
+		for (let index = 0; index < Number(holes) + 1; index++) {
 			if (index == 0) {
 				var row = $("<td>")
 					.text(players[playerIndex].getName());
