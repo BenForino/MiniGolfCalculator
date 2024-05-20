@@ -9,6 +9,9 @@ class playerScore {
 	addScore(score) {
 		this.scoreArray.push(score);
 	}
+	undoScore() {
+		this.scoreArray.pop();
+	}
 	addName(name) {
 		this.name = name;
 	}
@@ -64,6 +67,17 @@ function runGame() {
 		initSetup();
 	} else {
 		calcInit();
+	}
+}
+
+function undo() {
+	if (currentRound != -1) {
+		currentRound = currentRound - 1;
+		for (let index = 0; index < players.length; index++) {
+			players[index].undoScore();
+		}
+		saveGameState();
+		runGame();
 	}
 }
 

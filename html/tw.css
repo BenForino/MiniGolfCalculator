@@ -588,6 +588,7 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+
 .input-primary:focus {
   border-width: 2px;
   --tw-border-opacity: 1;
@@ -639,12 +640,12 @@ video {
   width: 91.666667%;
 }
 
-.w-screen {
-  width: 100vw;
-}
-
 .w-full {
   width: 100%;
+}
+
+.w-screen {
+  width: 100vw;
 }
 
 .min-w-full {
