@@ -351,7 +351,7 @@ function printScoreSheet() {
 				.text("Players");
 			header.append(row);
 		}
-		else if (index == Number(holes)) {
+		else if (index > Number(holes)) {
 			var row = $("<th>")
 				.text("Total");
 			header.append(row);
@@ -371,7 +371,7 @@ function printScoreSheet() {
 					.text(players[playerIndex].getName());
 				scoreRow.append(row);
 			}
-			else if (index == Number(holes)) {
+			else if (index > Number(holes)) {
 				var row = $("<td>")
 					.text(players[playerIndex].getScore());
 				scoreRow.append(row);
