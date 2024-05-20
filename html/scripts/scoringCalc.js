@@ -214,6 +214,7 @@ function drawCalculator() {
 	$("#calcContainer").empty();
 
 	createPlayerInput(currentRound);
+	printScoreSheet();
 }
 
 function createPlayerInput(count) {
