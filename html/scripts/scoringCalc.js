@@ -345,7 +345,7 @@ function printScoreSheet() {
 	var table = $("<table>").addClass("foo");
 	//create headers
 	var header = $("<tr>").addClass("header");
-	for (let index = 0; index < Number(holes) + 1; index++) {
+	for (let index = 0; index < Number(holes) + 2; index++) {
 		if (index == 0) {
 			var row = $("<th>")
 				.text("Players");
@@ -365,7 +365,7 @@ function printScoreSheet() {
 	table.append(header);
 	for (let playerIndex = 0; playerIndex < players.length; playerIndex++) {
 		var scoreRow = $("<tr>");
-		for (let index = 0; index < Number(holes) + 1; index++) {
+		for (let index = 0; index < Number(holes) + 2; index++) {
 			if (index == 0) {
 				var row = $("<td>")
 					.text(players[playerIndex].getName());
