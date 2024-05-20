@@ -556,7 +556,6 @@ video {
 
 .input-primary {
   height: 100%;
-  width: 100%;
   border-radius: 7px;
   border-width: 1px;
   --tw-border-opacity: 1;
@@ -589,7 +588,6 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-
 .input-primary:focus {
   border-width: 2px;
   --tw-border-opacity: 1;
@@ -605,6 +603,7 @@ video {
 
 .form-primary {
   display: flex;
+  width: 100%;
   flex-direction: column;
 }
 
@@ -624,6 +623,10 @@ video {
   margin-right: auto;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -632,8 +635,16 @@ video {
   display: table;
 }
 
-.min-w-80 {
-  min-width: 20rem;
+.w-11\/12 {
+  width: 91.666667%;
+}
+
+.w-screen {
+  width: 100vw;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .min-w-full {
@@ -646,6 +657,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.overflow-scroll {
+  overflow: scroll;
 }
 
 .rounded-xl {
@@ -677,6 +692,12 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -691,4 +712,14 @@ body {
 
 #scoreInput input {
   margin: 0.5em;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
 }

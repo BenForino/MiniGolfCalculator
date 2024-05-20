@@ -4,10 +4,10 @@
 
 @layer components {
 	.input-primary {
-		@apply h-full w-full rounded-[7px] border border-slate-700 bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal outline outline-0 transition-all placeholder-gray-500 focus:border-2 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-slate-50;
+		@apply h-full rounded-[7px] border border-slate-700 bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal outline outline-0 transition-all placeholder-gray-500 focus:border-2 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-slate-50;
 	}
 	.form-primary {
-		@apply flex flex-col space-y-10;
+		@apply flex flex-col space-y-10 w-full;
 	}
 }
 
@@ -25,4 +25,14 @@ body {
 
 #scoreInput input {
 	margin: 0.5em;
+}
+table {
+	border-collapse: collapse;
+}
+
+table,
+th,
+td {
+	border: 1px solid;
+
 }

@@ -23,6 +23,9 @@ class playerScore {
 
 		return total;
 	}
+	getScoreArray() {
+		return this.scoreArray;
+	}
 	getScoresJSON() {
 		return JSON.stringify(this.scoreArray);
 	}
@@ -36,6 +39,10 @@ $(function () {
 	$("#restartBt").click(function (e) {
 		e.preventDefault();
 		restartGame();
+	});
+	$("#scoresheetBt").click(function (e) {
+		e.preventDefault();
+		$("#scoresheet").toggle(100);
 	});
 });
 
@@ -198,10 +205,7 @@ function drawCalculator() {
 function createPlayerInput(count) {
 	let holesRemaining = holes - currentRound;
 	$("#calcContainer").append(
-		"<p>Input Scores for round " + currentRound + "</p>"
-	);
-	$("#calcContainer").append(
-		"<p>Holes Remaining: " + holesRemaining + "</p>"
+		"<p>Input Scores For Round " + currentRound + " out of " + holes + "</p>"
 	);
 	$form = $('<form id="scoreInput" class="form-primary"></form>');
 	for (let index = 0; index < players.length; index++) {
@@ -228,6 +232,7 @@ function tallyScores(scoresArray) {
 		i++;
 	});
 	saveGameState();
+	printScoreSheet();
 	runGame();
 }
 
@@ -333,4 +338,52 @@ function printFullScore(scoreArray) {
 		table.append(row);
 	}
 	$("#calcContainer").append(table);
+}
+
+function printScoreSheet() {
+	$("#scoresheet").empty();
+	var table = $("<table>").addClass("foo");
+	//create headers
+	var header = $("<tr>").addClass("header");
+	for (let index = 0; index < Number(holes) + 2; index++) {
+		if (index == 0) {
+			var row = $("<th>")
+				.text("Players");
+			header.append(row);
+		}
+		else if (index > Number(holes)) {
+			var row = $("<th>")
+				.text("Total");
+			header.append(row);
+		}
+		else {
+			var row = $("<th>")
+				.text(index);
+			header.append(row);
+		}
+	}
+	table.append(header);
+	for (let playerIndex = 0; playerIndex < players.length; playerIndex++) {
+		var scoreRow = $("<tr>");
+		for (let index = 0; index < Number(holes) + 2; index++) {
+			if (index == 0) {
+				var row = $("<td>")
+					.text(players[playerIndex].getName());
+				scoreRow.append(row);
+			}
+			else if (index > Number(holes)) {
+				var row = $("<td>")
+					.text(players[playerIndex].getScore());
+				scoreRow.append(row);
+			}
+			else {
+				var row = $("<td>")
+					.text(players[playerIndex].getScoreArray()[index - 1]);
+				scoreRow.append(row);
+			}
+		}
+		table.append(scoreRow);
+	}
+
+	$("#scoresheet").append(table);
 }
