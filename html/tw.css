@@ -624,6 +624,10 @@ video {
   margin-right: auto;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -640,6 +644,10 @@ video {
   width: 100vw;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .min-w-full {
   min-width: 100%;
 }
@@ -650,6 +658,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.overflow-scroll {
+  overflow: scroll;
 }
 
 .rounded-xl {
@@ -704,9 +716,6 @@ body {
 }
 
 table {
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
   border-collapse: collapse;
 }
 
