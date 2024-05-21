@@ -195,11 +195,15 @@ function drawNameInput() {
 function saveNames(array) {
 	if (players.length == array.length) {
 		for (let index = 0; index < players.length; index++) {
-			players[index].addName(array[index].value);
+			if (array[index].value) {
+				players[index].addName(array[index].value);
+			} else {
+				players[index].addName("Player " + (index + 1));
+			}
 		}
 	} else {
 		for (let index = 0; index < players.length; index++) {
-			players[index].addName("Player "(index + 1));
+			players[index].addName("Player " + (index + 1));
 		}
 	}
 }
