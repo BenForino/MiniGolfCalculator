@@ -47,6 +47,10 @@ $(function () {
 		e.preventDefault();
 		$("#scoresheet").toggle(100);
 	});
+	$("#undoBt").click(function (e) {
+		e.preventDefault();
+		undo();
+	});
 });
 
 function restartGame() {
