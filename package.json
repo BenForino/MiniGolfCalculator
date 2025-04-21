@@ -3,6 +3,6 @@
     "js-cookie": "^3.0.5"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.13"
+    "tailwindcss": "^4.1.4"
   }
 }
